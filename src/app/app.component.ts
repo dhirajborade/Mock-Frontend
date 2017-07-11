@@ -7,13 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title: string = 'Claimfound Mock Front to test Backend RESTful APIs';
+  title: string = 'Claimfound Mock Frontend to test Backend RESTful APIs';
   inputText: string = "";
 
-  constructor(appService: AppService) {
+  constructor(private appService: AppService) {
   }
 
   onClick() {
-    
+    this.appService.post(this.inputText, 'newuser');
   }
 }
