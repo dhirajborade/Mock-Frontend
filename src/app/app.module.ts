@@ -1,18 +1,20 @@
+import { AppService } from './app.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { MockFrontendComponent } from './mock-frontend/mock-frontend.component';
+
+import { FormsModule }   from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MockFrontendComponent
+    AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
