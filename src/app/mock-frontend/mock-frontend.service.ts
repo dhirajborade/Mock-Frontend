@@ -12,16 +12,34 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class MockFrontendService {
   
+  private serverUrl = "http://0.0.0.0:5000/";
+
   constructor(private http: Http) { }
 
-  private serverUrl = "http://0.0.0.0:5000/";
+  showOutput(response) {
+    let responseData: string = '';
+    switch(response) {
+      case undefined: {
+        responseData = 'Unauthorized';
+        break;
+      }
+      case {}: {
+        responseData = 'User Created Successfully';
+        break;
+      }
+      default: {
+        responseData = 'Login Successful';
+      }
+    }
+    return responseData;
+  }
 
   postMethod(data: any, url: string) {
     let params = this.prePost(data, url);
     return this.http.post(params['postUrl'], params['body'], params['options']).map(this.extractData);
   }
 
-  prePost(data: any, url: string) {
+  private prePost(data: any, url: string) {
     let dataCopy = JSON.parse(JSON.stringify(data));
     let body = JSON.stringify(dataCopy);
     let postUrl = this.serverUrl + url
@@ -33,7 +51,7 @@ export class MockFrontendService {
     }
   }
 
-  createOptions() {
+  private createOptions() {
       let headers = new Headers({
           'Content-Type': 'application/json'
       });

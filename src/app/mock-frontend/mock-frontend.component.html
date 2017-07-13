@@ -1,15 +1,27 @@
-<p style="text-align: center">
-  mock-frontend works!
-</p>
-
 <div align="center">
-  <textarea [(ngModel)]="inputText" rows="20" cols="100"></textarea>
+  <h3>Select Backend Endpoint</h3>
+  <select [ngModel] = "selectedEndpoint" (ngModelChange)="onChange($event)">
+    <option *ngFor="let endpoint of endpoints" [ngValue]="endpoint.id">{{ endpoint.endpointName }}</option>
+  </select>
+</div>
+
+<br>
+
+<div align="center" *ngIf="showText">
+  <textarea [(ngModel)]="inputText" rows="20" cols="80"></textarea>
+</div>
+
+<br>
+
+<div align="center" *ngIf="showText">
   <button type="button" (click)="onClickPrettyPrint()">Pretty Print</button>
   <button type="button" (click)="onClickTestAPI()">Test API</button>
 </div>
 
-<div style="text-align: center;">
+<br>
+
+<div style="text-align: center;" *ngIf="showText">
   <div style="display: inline-block; text-align: left">
-    <pre *ngIf="response">{{ response }}</pre>
+    <pre *ngIf="response">{{ responseData }}</pre>
   </div>
 </div>
