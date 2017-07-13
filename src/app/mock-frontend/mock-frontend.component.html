@@ -1,4 +1,5 @@
 <div align="center">
+  <h3>Select Backend Endpoint</h3>
   <select [ngModel] = "selectedEndpoint" (ngModelChange)="onChange($event)">
     <option *ngFor="let endpoint of endpoints" [ngValue]="endpoint.id">{{ endpoint.endpointName }}</option>
   </select>
